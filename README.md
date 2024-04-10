@@ -1,4 +1,4 @@
-# Proportional-Integral-Derivative-Algorithm
+# PID-Algorithm
 
-This repository contains the code for a PID algorithm.
-The code has been programmed using Visual Studio Code.
+This repository contains the code for a Proportional-Integral-Derivative algorithm.
+The code has been programmed using Visual Studio Code through C++.
