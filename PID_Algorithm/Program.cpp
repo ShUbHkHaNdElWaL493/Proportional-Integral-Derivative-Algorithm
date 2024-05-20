@@ -5,22 +5,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define Kp 0.01
-#define Ki 0.00005
-#define Kd 0.00005
+#define Kp 0.002
+#define Ki 0.005
+#define Kd 0.0005
 
 void changeSpeed(float *speed, int *target_speed)
 {
     float s = *speed;
     int ts = *target_speed;
+    float error = 0;
     float error_sum = 0;
+    float error_initial = 0;
     if (s < ts)
     {
         while (s < ts)
         {
-            float error = ts - s;
+            error_initial = error;
+            error = ts - s;
             error_sum += error;
-            s += Kp * error + Ki * error_sum + Kd * 100 * error;
+            s += Kp * error + Ki * error_sum + Kd * 100 * (error - error_initial);
             cout<<s<<endl;
             this_thread::sleep_for(chrono::milliseconds(10));
         }
@@ -30,9 +33,10 @@ void changeSpeed(float *speed, int *target_speed)
     {
         while (s > ts)
         {
-            float error = ts - s;
+            error_initial = error;
+            error = ts - s;
             error_sum += error;
-            s += Kp * error + Ki * error_sum + Kd * 100 * error;
+            s += Kp * error + Ki * error_sum + Kd * 100 * (error - error_initial);
             cout<<s<<endl;
             this_thread::sleep_for(chrono::milliseconds(10));
         }
