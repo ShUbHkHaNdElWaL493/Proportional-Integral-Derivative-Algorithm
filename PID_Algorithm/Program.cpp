@@ -7,7 +7,7 @@ using namespace std;
 
 #define Kp 0.002
 #define Ki 0.005
-#define Kd 0.0005
+#define Kd 0.05
 
 void changeSpeed(float *speed, int *target_speed)
 {
@@ -23,7 +23,7 @@ void changeSpeed(float *speed, int *target_speed)
             error_initial = error;
             error = ts - s;
             error_sum += error;
-            s += Kp * error + Ki * error_sum + Kd * 100 * (error - error_initial);
+            s += Kp * error + Ki * error_sum + Kd * (error - error_initial);
             cout<<s<<endl;
             this_thread::sleep_for(chrono::milliseconds(10));
         }
@@ -36,7 +36,7 @@ void changeSpeed(float *speed, int *target_speed)
             error_initial = error;
             error = ts - s;
             error_sum += error;
-            s += Kp * error + Ki * error_sum + Kd * 100 * (error - error_initial);
+            s += Kp * error + Ki * error_sum + Kd * (error - error_initial);
             cout<<s<<endl;
             this_thread::sleep_for(chrono::milliseconds(10));
         }
